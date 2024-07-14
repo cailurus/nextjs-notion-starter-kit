@@ -187,10 +187,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
   // const isRootPage =
   //   parsePageId(block?.id) === parsePageId(site?.rootNotionPageId)
   const isBlogPost =
-    block?.type === 'page' && block?.parent_table === 'collection'
-
+    block.type === 'page' && (block.parent_table === 'block' || block.parent_table === 'collection')
   const showTableOfContents = !!isBlogPost
-  const minTableOfContentsItems = 1
+  const minTableOfContentsItems = 2
 
   const pageAside = React.useMemo(
     () => (
