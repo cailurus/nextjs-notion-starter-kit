@@ -53,14 +53,14 @@ export default siteConfig({
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
   navigationStyle: 'default',
   //navigationStyle: 'custom',
-  //navigationLinks: [
-  //  {
-  //    title: 'About',
-  //    pageId: '8d88ac05ada64359bebe28bcb774d95c'
-  //  }
+  navigationLinks: [
+    {
+      title: 'About',
+      pageId: '8d88ac05ada64359bebe28bcb774d95c'
+    }
   //   {
   //     title: 'Contact',
   //     pageId: '6a29ebcb935a4f0689fe661ab5f3b8d1'
   //   }
-  //]
+  ]
 })
