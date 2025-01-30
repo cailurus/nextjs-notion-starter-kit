@@ -16,6 +16,8 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
         <main className={styles.main}>
           <h1>Notion Page Not Found</h1>
 
+          <p>大概率文章的 url 有所变动以及我还没改重定向，所以你去主页 https://blog.xxm.plus/ 找找吧…</p>
+
           {error ? (
             <p>{error.message}</p>
           ) : (
