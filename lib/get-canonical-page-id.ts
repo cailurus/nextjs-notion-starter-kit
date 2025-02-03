@@ -1,6 +1,6 @@
 import { ExtendedRecordMap } from 'notion-types'
 import {
-  getCanonicalPageId as getCanonicalPageIdImpl,
+  //getCanonicalPageId as getCanonicalPageIdImpl,
   parsePageId
 } from 'notion-utils'
 
@@ -20,7 +20,10 @@ export function getCanonicalPageId(
   if (override) {
     return override
   } else {
-    const originalRes = getCanonicalPageIdImpl(pageId, recordMap, {uuid})
-    return pageId.replaceAll('-', '')
+    if(uuid){return pageId.replaceAll('-', '')}
+    else{
+          return pageId.replaceAll('-', '')
+    }
+    //return getCanonicalPageIdImpl(pageId, recordMap, {uuid})
   }
 }
