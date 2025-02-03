@@ -20,7 +20,7 @@ export function getCanonicalPageId(
   if (override) {
     return override
   } else {
-    //return getCanonicalPageIdImpl(pageId, recordMap, {uuid})
+    const originalRes = getCanonicalPageIdImpl(pageId, recordMap, {uuid})
     return pageId.replaceAll('-', '')
   }
 }
