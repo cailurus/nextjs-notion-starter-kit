@@ -10,7 +10,7 @@ export default siteConfig({
   rootNotionSpaceId: 'realxxm',
 
   // basic site info (required)
-  name: 'XXM's Blog',
+  name: "XXM's Blog",
   domain: 'blog.xxm.plus',
   author: 'XXM',
 
