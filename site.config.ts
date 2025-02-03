@@ -10,12 +10,12 @@ export default siteConfig({
   rootNotionSpaceId: 'realxxm',
 
   // basic site info (required)
-  name: 'XXM Blog',
+  name: 'XXM's Blog',
   domain: 'blog.xxm.plus',
   author: 'XXM',
 
   // open graph metadata (optional)
-  description: 'Example Next.js Notion Starter Kit Site',
+  description: 'A personal blog about his work and life',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',
