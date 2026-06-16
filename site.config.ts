@@ -4,7 +4,7 @@ export default siteConfig({
   // the site's root Notion page (required)
   rootNotionPageId: '4b2533f043c34911954f4952e7bd8a33',
   // https://www.notion.so/realxxm/Sample-Blog-4b2533f043c34911954f4952e7bd8a33
-  
+
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: 'realxxm',
@@ -55,8 +55,8 @@ export default siteConfig({
   navigationStyle: 'custom',
   navigationLinks: [
     {
-       title: 'About',
-       pageId: '14d118ea4e24802f806cce551296b3f8'
+      title: 'About',
+      pageId: '14d118ea4e24802f806cce551296b3f8'
     }
     //{
     //   title: 'Contact',

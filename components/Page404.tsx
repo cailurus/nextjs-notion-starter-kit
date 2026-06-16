@@ -1,11 +1,9 @@
-import * as React from 'react'
-
-import * as types from '@/lib/types'
+import type * as types from '@/lib/types'
 
 import { PageHead } from './PageHead'
 import styles from './styles.module.css'
 
-export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
+export function Page404({ site, pageId, error }: types.PageProps) {
   const title = site?.name || 'Notion Page Not Found'
 
   return (
@@ -16,7 +14,10 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
         <main className={styles.main}>
           <h1>Notion Page Not Found</h1>
 
-          <p>大概率文章的 url 有所变动以及我还没改重定向，所以你去主页 https://blog.xxm.plus/ 找找吧…</p>
+          <p>
+            大概率文章的 url 有所变动以及我还没改重定向，所以你去主页
+            https://blog.xxm.plus/ 找找吧…
+          </p>
 
           {error ? (
             <p>{error.message}</p>

@@ -1,4 +1,8 @@
-import { ExtendedRecordMap, SearchParams, SearchResults } from 'notion-types'
+import {
+  type ExtendedRecordMap,
+  type SearchParams,
+  type SearchResults
+} from 'notion-types'
 import { mergeRecordMaps } from 'notion-utils'
 import pMap from 'p-map'
 import pMemoize from 'p-memoize'
@@ -8,6 +12,7 @@ import {
   navigationLinks,
   navigationStyle
 } from './config'
+import { getTweetsMap } from './get-tweets'
 import { normalizeRecordMap } from './normalize-record-map'
 import { notion } from './notion-api'
 import { getPreviewImageMap } from './preview-images'
@@ -15,21 +20,21 @@ import { getPreviewImageMap } from './preview-images'
 const getNavigationLinkPages = pMemoize(
   async (): Promise<ExtendedRecordMap[]> => {
     const navigationLinkPageIds = (navigationLinks || [])
-      .map((link) => link.pageId)
+      .map((link) => link?.pageId)
       .filter(Boolean)
 
     if (navigationStyle !== 'default' && navigationLinkPageIds.length) {
       return pMap(
         navigationLinkPageIds,
         async (navigationLinkPageId) =>
-          notion
-            .getPage(navigationLinkPageId, {
+          normalizeRecordMap(
+            await notion.getPage(navigationLinkPageId, {
               chunkLimit: 1,
               fetchMissingBlocks: false,
               fetchCollections: false,
               signFileUrls: false
             })
-            .then(normalizeRecordMap),
+          ),
         {
           concurrency: 4
         }
@@ -62,6 +67,8 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
     const previewImageMap = await getPreviewImageMap(recordMap)
     ;(recordMap as any).preview_images = previewImageMap
   }
+
+  await getTweetsMap(recordMap)
 
   return recordMap
 }
