@@ -12,6 +12,7 @@ import {
 
 import * as libConfig from '@/lib/config'
 import { mapImageUrl } from '@/lib/map-image-url'
+import { normalizeRecordMap } from '@/lib/normalize-record-map'
 import { notion } from '@/lib/notion-api'
 import { NotionPageInfo } from '@/lib/types'
 
@@ -25,7 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     throw new Error('Invalid notion page id')
   }
 
-  const recordMap = await notion.getPage(pageId)
+  const recordMap = normalizeRecordMap(await notion.getPage(pageId))
 
   const keys = Object.keys(recordMap?.block || {})
   const block = recordMap?.block?.[keys[0]]?.value

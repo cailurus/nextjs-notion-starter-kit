@@ -1,10 +1,11 @@
-import { getAllPagesInSpace, uuidToId, getPageProperty } from 'notion-utils'
+import { getAllPagesInSpace, getPageProperty, uuidToId } from 'notion-utils'
 import pMemoize from 'p-memoize'
 
 import * as config from './config'
 import * as types from './types'
 import { includeNotionIdInUrls } from './config'
 import { getCanonicalPageId } from './get-canonical-page-id'
+import { normalizeRecordMap } from './normalize-record-map'
 import { notion } from './notion-api'
 
 const uuid = !!includeNotionIdInUrls
@@ -31,7 +32,7 @@ async function getAllPagesImpl(
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string, ...args) => {
     console.log('\nnotion getPage', uuidToId(pageId))
-    return notion.getPage(pageId, ...args)
+    return normalizeRecordMap(await notion.getPage(pageId, ...args))
   }
 
   const pageMap = await getAllPagesInSpace(
@@ -48,7 +49,9 @@ async function getAllPagesImpl(
       }
 
       const block = recordMap.block[pageId]?.value
-      if (!(getPageProperty<boolean|null>('Public', block, recordMap) ?? true)) {
+      if (
+        !(getPageProperty<boolean | null>('Public', block, recordMap) ?? true)
+      ) {
         return map
       }
 
