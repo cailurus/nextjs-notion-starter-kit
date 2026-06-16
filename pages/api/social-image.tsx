@@ -1,4 +1,3 @@
-import ky from 'ky'
 import { type NextApiRequest, type NextApiResponse } from 'next'
 import { ImageResponse } from 'next/og'
 import { type PageBlock } from 'notion-types'
@@ -277,8 +276,8 @@ async function isUrlReachable(
   }
 
   try {
-    await ky.head(url)
-    return true
+    const res = await fetch(url, { method: 'HEAD' })
+    return res.ok
   } catch {
     return false
   }
